@@ -41,9 +41,26 @@ for i in {1..254}; do (ping -c 1 192.168.28.$i | grep "bytes from" &);done
 ssh -S /tmp/gray gray -O forward -L 41901:192.168.28.111:22
 ssh -MS /tmp/comrade comrade@27.0.0.1 -p 41901
 
+proxychains nmap -v -sT -Pn -T4 --script=http-enum.nse 192.168.28.111 -p 80
 
+smb discovery
 
+Scheme of Maneuver:
+>Jump Box
+->Network scan: 192.168.28.96/27
+-->Network scan:192.168.150.224/27
 
+Target Section:
+
+Network scans:
+Network: 192.168.28.96/27
+Network:192.168.150.224/27
+OSs: unknown
+Creds: student ::
+Known Ports: unknown
+Known URL: consulting.site.donovia
+Known URL: conference.site.donovia
+Action: Reconnaissance to collect intelligence and identify possible avenues of approach in the network.
 
 
 
