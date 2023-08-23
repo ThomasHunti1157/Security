@@ -36,9 +36,10 @@ ssh -MS /tmp/gray student@10.50.35.130 (anything that goes herewill go through y
 ping sweep command:
 for i in {1..254}; do (ping -c 1 192.168.28.$i | grep "bytes from" &);done
 
-
-
-
+(on lin-ops) ssh -S /tmp/gray gray -O forward -D 9050
+(on lin-ops new tunnel goes through gray host)ssh -S /tmp/gray gray -O forward -L 41900:192.168.28.111:80
+ssh -S /tmp/gray gray -O forward -L 41901:192.168.28.111:22
+ssh -MS /tmp/comrade comrade@27.0.0.1 -p 41901
 
 
 
