@@ -1,12 +1,35 @@
 ##Security NOTES
 
+Links: 
+https://github.com/nmap/nmap/tree/master/scripts
+
+windows op station ip: 10.50.38.32
+linux op station ip: 10.50.21.11
+
 ##DAY 1 (Pen Testing)
 
 http://10.50.20.250:8000
 
 Login: 
-THHU-505-M X312RSxndiF2sbo 10.50.35.130
+THHU-505-M X312RSxndiF2sbo  Grey Host: 10.50.35.130
 
+Most common pen testing will start with social networking and getting an inside source for pen testing.
+
+Data Collection:
+    Web Data
+    Sensitive Data
+    Publicly Accessible
+    Social Media
+    Domain and IP Data
+
+*Ping network then narrow down and nmap the hosts remaining
+*ping sweep -> nmap -> banner grab
+
+Script location:
+
+/usr/share/nmap/scripts
+
+Demo Notes:
 
 
 
