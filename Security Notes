@@ -237,19 +237,39 @@ TW	imAPlaya	3.00
 rich_kid	1M$	3.00
 p0pStar	thrilla	3.00
 Joe	vato	3.00
-	flag:
 
 
+##DAY 4 REVERSE ENGINEERING
 
+	
 
+64 bit - RIP
+32 bit - EIP
+16 bit - IP
 
+main:
+mov rax, 16 (moving 16 into rax) 
+push rax (push to stack)
+jmp mem2 (jump to mem location)
 
+mem2:
+mov rax, 0 ( set value of 0 to rax)
+ret (return)
 
+mem2:
+pop r8 (pops value off the stack (16) into r8) 
+cmp rax, r8 (comparing rax to r8 if equal proceed))
+je mem1 (jump to mem1 <jump equal>)
 
-
-
-
-
+T1
+Hostname: web.site.donovia
+IP: 192.168.28.111
+OS: unknown
+Creds: comrade::StudentWebExploitPassword
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Extract approved binaries under directory titled "longTermStorage".
 
 
 
