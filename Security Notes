@@ -14,7 +14,7 @@ Login:
 THHU-505-M X312RSxndiF2sbo  Grey Host: 10.50.35.130
 
 Most common pen testing will start with social networking and getting an inside source for pen testing.
-
+ssh-keygen -f "/home/student/.ssh/known_hosts" -R "[127.0.0.1]:4190"
 Data Collection:
     Web Data
     Sensitive Data
