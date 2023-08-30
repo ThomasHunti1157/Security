@@ -293,9 +293,27 @@ x/256c $<REGISTER>  #   Read characters from specific register
 break <address>  #   Establish a break point
 
 
+##EXPLOIT DEVELOPMENT DEMO
 
+gdb ./func
+disass main
+info functions
+https://wiremask.eu/tools/buffer-overflow-pattern-generator/
+run <<<$(echo "") (takes as user input) (find register offset) paste EIP to register value and find offset
+run <<<$(./<script>)
 
+env - gdb ./func (start without evirement variables)
 
+crash it
+info proc map
+start after heap to end of stack (find)
+
+find /b <start of address>, <end stack address>, 0xff, 0xe4 (look from start of satack to end and look for JP end ESP (ff for JP and e4 for ESP))
+*in script*
+0xf7de3b59 -> \x59\x3b\xde\xf7  JMP ESP (switch to big endian)
+
+#Making payload
+msfconsole
 
 
 
