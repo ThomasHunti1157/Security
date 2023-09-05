@@ -499,7 +499,38 @@ cat /etc/crontab
 crontab guru
 crontab cheat sheet
 
+##WINDOWS COMMANDS
 
+dir /ah
+find "string" <file you ant to find the string>
+type demo_new.c | find /i "success"
+
+Scheme of Maneuver:
+>Jump Box
+->T1: 192.168.28.100
+-->T3:x.x.x.9
+
+Target Section:
+
+T1
+Hostname: Donovian_Extranet
+IP: 192.168.28.100
+OS: CentOS
+Creds:Unknown
+Last Known SSH Port: 2222
+PSP: none
+Malware: none
+Action: Perform SSH masquerade and survey system. Identify redirection to the next target.
+
+T3
+Hostname: unknown
+IP: x.x.x.9
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Gain access; survey host and map Donovian internal Cyberspace.
 
 
 
