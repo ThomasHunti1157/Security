@@ -804,6 +804,18 @@ straight from ops to ip (not a jump box straight to target)
 **ignore anything in 190
 on those boxes you will get root or administrator on two of them at least
 
+nmap -V -sT -Pn -T4 -sV 10.50.40.167
+nmap -V -sT -Pn --script=http-enum.nse -p80 
+files to directory raversal see
+/etc/passwd
+/etc/hosts
+network tab in inspection for login go to the post request look at request and make into raw data (for format), copy the raw format
+put question mark after.php? then add raw data to obtian passwords.
+
+look at images on http site and download for info.
+
+
+
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -854,6 +866,8 @@ HAM 	32 	$15
 
 for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
 **NIKTO
+
+Dry Run:
 
 
 
